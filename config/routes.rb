@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'tasks#welcome'
   resources :tasks
   resources :todos
   resources :todos

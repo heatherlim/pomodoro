@@ -1,5 +1,6 @@
 <center>
-<h1>Tasks</h1>
+<h1>Pomodoro</h1>
+</center>
  <!-- <div ng-controller="TaskCtrl">
     <form ng-submit="addTask">
       <input type ="text" ng-model="task.name">
@@ -13,12 +14,11 @@
 
   </div> -->
 
+
   <div ng-controller="TaskCtrl">
   <ul>
     <li ng-repeat="task in tasks">
-        {{task.description}}
+        {{task.description}} {{task.status}}
     </li>
   </ul>
 </div>
-
-</center>
