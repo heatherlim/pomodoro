@@ -9,13 +9,27 @@ var app;
 
 app = angular.module('TasksList', ["ngResource"])
 
-app.controller("TaskCtrl", ['$scope', 'Task', function($scope, Task) {
+app.controller("TaskCtrl", ['$scope', 'Task', '$http', function($scope, Task, $http) {
    $scope.tasks = Task.query();
+
+   $scope.addTask = function(){
+     $http.post('/tasks', {newTask: $scope.newTask})
+        .success(function(result){
+          $scope.tasks.push(result);
+          $scope.newTask = '';
+        })
+        .error(function(data, status){
+          console.log(data);
+        });
+   };
+
+
 }]);
 
 app.factory("Task", [
   "$resource", function($resource) {
-    return $resource("/tasks/:id", {
+    return $resource("/tasks", {
+        // return $resource("/tasks/:id", {
       // id: "@id"
     }, {
       update: {

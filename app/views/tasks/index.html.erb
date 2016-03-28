@@ -14,11 +14,39 @@
 
   </div> -->
 
+  <div ng-controller="TaskCtrl" style="padding-right:180px; padding-left:180px">
 
-  <div ng-controller="TaskCtrl">
-  <ul>
-    <li ng-repeat="task in tasks">
-        {{task.description}} {{task.status}}
-    </li>
-  </ul>
+      <div id = "taskDivInProgress">
+
+        <h2>In Progress</h2>
+        <br>
+        <li style = "list-style: none;" ng-repeat="task in tasks">
+          <p>
+          <span ng-if="task.status === 'in_progress'" class="badge badge-inverse">
+            <label>
+              {{task.description}} <input type = "checkbox">
+            </label>
+          </span>
+        </p>
+        </li>
+        Add Task:<br> <input type ="text" ng-model="newTask"> <a href="#" class="btn btn-default" ng-click="addTask()"> Add</a>
+
+      </div>
+
+      <div id = "taskDivComplete">
+
+        <h2>Complete</h2>
+        <br>
+        <li style = "list-style: none;" ng-repeat="task in tasks">
+          <p>
+            <span ng-if="task.status === 'complete'" class="badge badge-inverse">
+              <label>
+                {{task.description}} <input type = "checkbox">
+              </label>
+            </span>
+          </p>
+        </li>
+
+      </div>
+
 </div>

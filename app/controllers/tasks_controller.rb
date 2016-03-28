@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   end
 
   def new
+    binding.pry
     @task = Task.new
   end
 
@@ -14,15 +15,22 @@ class TasksController < ApplicationController
     render :json => @tasks
   end
 
+  def update_to_complete
+    @task = Task.find(params[:id])
+    @task.status = "complete"
+  end
+
   def show
-    binding.pry
     @task = Task.find(params[:id])
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = Task.new
+    @task.description = params[:newTask]
+    @task.status = "in_progress"
     @task.save
-    redirect_to '/'
+    render :json => @task
+    #redirect_to '/'
   end
 
   def destroy

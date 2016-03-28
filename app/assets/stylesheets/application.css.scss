@@ -28,7 +28,45 @@
  // And finally bootswatch style itself
  @import "bootswatch/amelia/bootswatch";
 
- h1 {
-    font-size: 550%;
-    color: #ff3333;
+h1 {
+    font-size: 650%;
+    color: #ad1d28;
+}
+
+h2 {
+   font-size: 400%;
+   color: #27666d;
+}
+
+label {
+    font-size: 250%;
+    margin: 5px 0px;
+    text-indent: 10px;
+}
+
+input[type=checkbox]
+{
+  margin-left:100px;
+
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+
+  // padding: 10px;
+}
+.label-inverse, .badge-inverse {
+  background-color: #27666d;
+}
+
+.badge-inverse:hover {
+  background-color: #ad1d28;
+}
+
+#taskDivInProgress {
+  float:left;
+}
+
+#taskDivComplete {
+  float:right;
 }
