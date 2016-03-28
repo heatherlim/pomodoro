@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'tasks#welcome'
   resources :tasks
-      get '/tasks/update/:id', to: 'tasks#update_to_complete'
+      # patch '/tasks/update/:id', to: 'tasks#update_to_complete'
 
   resources :todos
   resources :todos

@@ -23,8 +23,8 @@
         <li style = "list-style: none;" ng-repeat="task in tasks">
           <p>
           <span ng-if="task.status === 'in_progress'" class="badge badge-inverse">
-            <label>
-              {{task.description}} <input type = "checkbox">
+            <label ng-model="task">
+              {{task.description}} <input type = "checkbox" ng-click="updateTask()">
             </label>
           </span>
         </p>
@@ -40,8 +40,8 @@
         <li style = "list-style: none;" ng-repeat="task in tasks">
           <p>
             <span ng-if="task.status === 'complete'" class="badge badge-inverse">
-              <label>
-                {{task.description}} <input type = "checkbox">
+              <label ng-model="task">
+                {{task.description}} <input type = "checkbox" ng-click="updateTask()">
               </label>
             </span>
           </p>

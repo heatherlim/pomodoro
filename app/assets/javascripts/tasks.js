@@ -12,6 +12,17 @@ app = angular.module('TasksList', ["ngResource"])
 app.controller("TaskCtrl", ['$scope', 'Task', '$http', function($scope, Task, $http) {
    $scope.tasks = Task.query();
 
+   $scope.updateTask = function(){
+
+     $http.patch('/tasks/:id', {updateTask: this.task})
+        .success(function(result){
+          $scope.tasks = result;
+        })
+        .error(function(data, status){
+          console.log(data);
+        });
+   };
+
    $scope.addTask = function(){
      $http.post('/tasks', {newTask: $scope.newTask})
         .success(function(result){

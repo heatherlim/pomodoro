@@ -15,9 +15,16 @@ class TasksController < ApplicationController
     render :json => @tasks
   end
 
-  def update_to_complete
-    @task = Task.find(params[:id])
-    @task.status = "complete"
+  def update
+    @task = Task.find(params[:updateTask][:id])
+    if @task.status == "in_progress"
+      @task.status = "complete"
+    else
+      @task.status = "in_progress"
+    end
+    @task.save
+    @tasks = Task.all
+    render :json => @tasks
   end
 
   def show
