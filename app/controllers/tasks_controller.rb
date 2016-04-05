@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def welcome
     render 'index'
+    binding.pry
   end
 
   def new
