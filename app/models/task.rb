@@ -1,3 +1,4 @@
 class Task < ActiveRecord::Base
-  has_many :tomatoes
+  validates :description, presence: true
+  
 end

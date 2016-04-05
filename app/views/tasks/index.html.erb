@@ -8,10 +8,10 @@
 
         <h2>In Progress</h2>
         <br>
-        <li style = "list-style: none;" ng-repeat="task in tasks | filter: {status: 'in_progress'}">
+        <li style = "list-style: none;" ng-repeat="task in tasks | filter: {status: 'in_progress'} | orderBy:'created_at'">
           <!--  filter-->
           <p>
-          <span class="badge badge-inverse" ng-class="{'badge badge-select': select == this, 'badge badge-inverse': select != this}" ng-click="selectTask()">
+          <span class="badge badge-inverse" ng-class="{'badge badge-select': select == this, 'badge badge-inverse': select != this}" ng-click="selectTask()" ng-mouseover = "showButton()" ng-mouseout = "hideButton()">
             <label ng-model="task">
               {{task.description}}
             </label>
@@ -19,14 +19,14 @@
             <br>
             Pomodoro Number: {{task.tomatonum}}
           </span>
+          <a href="#" class="btn btn-default" ng-click="deleteTask()" ng-show="hover == true && selectedTask == this"> X</a>
         </p>
         </li>
         <input type ="text" ng-model="newTask" placeholder="New Task"> <a href="#" class="btn btn-default" ng-click="addTask()"> Add</a>
 
       </div>
 
-
-      <div style = "padding-left:700px; position:absolute; height: 100px; width: 100px" class = "ng-hide">
+      <div style = "position:fixed; top: 30%; left: 50%; margin-top:-50px; margin-left:-100px;" ng-show="myValue == true">
         <br><br><br><br><br><br><br><br>
 
           <h1> {{counter}}</h1>
@@ -41,7 +41,7 @@
         <br>
         <li style = "list-style: none;" ng-repeat="task in tasks | filter: {status: 'complete'}">
           <p>
-            <span class="badge badge-inverse">
+            <span class="badge badge-inverse" ng-mouseover = "showButton()" ng-mouseout = "hideButton()">
               <label ng-model="task">
                 {{task.description}}
               </label>
@@ -49,6 +49,7 @@
               <br>
               Pomodoro Number: {{task.tomatonum}}
             </span>
+            <a href="#" class="btn btn-default" ng-click="deleteTask()" ng-show="hover == true && selectedTask == this"> X</a>
           </p>
         </li>
 

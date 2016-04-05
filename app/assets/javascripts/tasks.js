@@ -12,6 +12,7 @@ app = angular.module('TasksList', ["ngResource"])
 app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($scope, Task, $http, $timeout) {
    $scope.tasks = Task.query();
    $scope.counter = 5;
+   $scope.hover = false;
 
    $scope.countdown = function(){
      if($scope.counter !== 0){
@@ -21,6 +22,7 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
 
      if($scope.counter === 0){
        $timeout.cancel(mytimeout);
+       $scope.updatePomodoro();
      }
    }
    }
@@ -30,19 +32,57 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
    $scope.stop = function(){
      if($scope.counter !== 0){
      $timeout.cancel(mytimeout);
-   }else{
+     }else{
      $scope.counter = 5;
-   }
+     }
    }
 
    $scope.selectTask = function(){
      $scope.select = this;
+     $scope.myValue = true;
    }
+   
+   
+   $scope.updatePomodoro = function(){
+     
+     $http.patch('/tasks/updatepomdoro/:id', {updatePomodoro: this.select.task})
+        .success(function(result){
+          $scope.tasks = result;
+          $scope.myValue = false;
+        })
+        .error(function(data, status){
+          console.log(data);
+        });
+   }
+   
+   $scope.showButton = function(){
+      $scope.selectedTask = this;
+      $scope.hover = true;
+   }
+   
+   $scope.hideButton = function(){
+      $timeout(function(){
+        $scope.hover = false;
+      }, 3000);
+   }
+   
+   $scope.deleteTask = function(){
 
+     $http.delete('/tasks/' + this.task.id)
+        .success(function(result){
+          // $scope.myValue = false;
+          $scope.tasks = result;
+        })
+        .error(function(data, status){
+          console.log(data);
+        });
+   };
+   
+   
    $scope.updateTask = function(){
-
      $http.patch('/tasks/:id', {updateTask: this.task})
         .success(function(result){
+          $scope.myValue = false;
           $scope.tasks = result;
         })
         .error(function(data, status){

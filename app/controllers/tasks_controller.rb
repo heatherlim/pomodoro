@@ -25,6 +25,21 @@ class TasksController < ApplicationController
     @tasks = Task.all
     render :json => @tasks
   end
+  
+  def update_pomodoro
+    @task = Task.find(params[:updatePomodoro][:id])
+    @task.tomatonum += 1
+    @task.save
+    @tasks = Task.all
+    render :json => @tasks
+  end
+  
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    @tasks = Task.all
+    render :json => @tasks
+  end
 
   def show
     @task = Task.find(params[:id])
@@ -35,15 +50,11 @@ class TasksController < ApplicationController
     @task.description = params[:newTask]
     @task.status = "in_progress"
     @task.tomatonum = 0
-    @task.save
-    render :json => @task
-    #redirect_to '/'
-  end
-
-  def destroy
-    @task = Task.find(params[:id])
-    @task.destroy
-    redirect_to '/'
+    if @task.save
+      render :json => @task
+    else
+      flash[:notice] = "Task needs a name!"
+    end
   end
 
 end

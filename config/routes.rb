@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   root 'tasks#welcome'
   resources :tasks
-      # patch '/tasks/update/:id', to: 'tasks#update_to_complete'
+      patch '/tasks/updatepomdoro/:id', to: 'tasks#update_pomodoro'
 
-  resources :todos
-  resources :todos
-  resources :tomatoes
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
