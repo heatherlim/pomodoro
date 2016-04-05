@@ -1,18 +1,6 @@
 <center>
 <h1>Pomodoro</h1>
 </center>
- <!-- <div ng-controller="TaskCtrl">
-    <form ng-submit="addTask">
-      <input type ="text" ng-model="task.name">
-    </form>
-
-    <ul>
-      <li ng-repeat="task in tasks">
-        {{task.description}}
-      </li>
-    </ul>
-
-  </div> -->
 
   <div ng-controller="TaskCtrl" style="padding-right:180px; padding-left:180px">
 
@@ -20,29 +8,46 @@
 
         <h2>In Progress</h2>
         <br>
-        <li style = "list-style: none;" ng-repeat="task in tasks">
+        <li style = "list-style: none;" ng-repeat="task in tasks | filter: {status: 'in_progress'}">
+          <!--  filter-->
           <p>
-          <span ng-if="task.status === 'in_progress'" class="badge badge-inverse">
+          <span class="badge badge-inverse" ng-class="{'badge badge-select': select == this, 'badge badge-inverse': select != this}" ng-click="selectTask()">
             <label ng-model="task">
-              {{task.description}} <input type = "checkbox" ng-click="updateTask()">
+              {{task.description}}
             </label>
+            <input type = "checkbox" ng-click="updateTask()">
+            <br>
+            Pomodoro Number: {{task.tomatonum}}
           </span>
         </p>
         </li>
-        Add Task:<br> <input type ="text" ng-model="newTask"> <a href="#" class="btn btn-default" ng-click="addTask()"> Add</a>
+        <input type ="text" ng-model="newTask" placeholder="New Task"> <a href="#" class="btn btn-default" ng-click="addTask()"> Add</a>
 
       </div>
+
+
+      <div style = "padding-left:700px; position:absolute; height: 100px; width: 100px" class = "ng-hide">
+        <br><br><br><br><br><br><br><br>
+
+          <h1> {{counter}}</h1>
+
+        <button ng-click="countdown()">Start</button><button ng-click="stop()">Stop/Reset</button>
+      </div>
+
 
       <div id = "taskDivComplete">
 
         <h2>Complete</h2>
         <br>
-        <li style = "list-style: none;" ng-repeat="task in tasks">
+        <li style = "list-style: none;" ng-repeat="task in tasks | filter: {status: 'complete'}">
           <p>
-            <span ng-if="task.status === 'complete'" class="badge badge-inverse">
+            <span class="badge badge-inverse">
               <label ng-model="task">
-                {{task.description}} <input type = "checkbox" ng-click="updateTask()">
+                {{task.description}}
               </label>
+              <input type = "checkbox" ng-click="updateTask()">
+              <br>
+              Pomodoro Number: {{task.tomatonum}}
             </span>
           </p>
         </li>

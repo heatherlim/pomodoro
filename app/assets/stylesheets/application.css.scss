@@ -55,13 +55,17 @@ input[type=checkbox]
 
   // padding: 10px;
 }
-.label-inverse, .badge-inverse {
+.badge-inverse {
   background-color: #27666d;
 }
 
-.badge-inverse:hover {
+.badge-select{
   background-color: #ad1d28;
 }
+
+// .badge-inverse:hover {
+//   background-color: #ad1d28;
+// }
 
 #taskDivInProgress {
   float:left;

@@ -6,7 +6,6 @@ class TasksController < ApplicationController
   end
 
   def new
-    binding.pry
     @task = Task.new
   end
 
@@ -35,6 +34,7 @@ class TasksController < ApplicationController
     @task = Task.new
     @task.description = params[:newTask]
     @task.status = "in_progress"
+    @task.tomatonum = 0
     @task.save
     render :json => @task
     #redirect_to '/'

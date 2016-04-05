@@ -1,8 +1,0 @@
-class CreateTomatoes < ActiveRecord::Migration
-  def change
-    create_table :tomatoes do |t|
-
-      t.timestamps null: false
-    end
-  end
-end
