@@ -26,7 +26,8 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.where(:user_id == session[:user_id])
+    @tasks = Task.where("user_id = ?", session[:user_id])
+    # Task.where(:user_id == session[:user_id])
     render :json => @tasks
   end
 
@@ -38,7 +39,7 @@ class TasksController < ApplicationController
       @task.status = "in_progress"
     end
     @task.save
-    @tasks = Task.where(:user_id == session[:user_id])
+    @tasks = Task.where("user_id = ?", session[:user_id])
     render :json => @tasks
   end
   
@@ -46,14 +47,14 @@ class TasksController < ApplicationController
     @task = Task.find(params[:updatePomodoro][:id])
     @task.tomatonum += 1
     @task.save
-    @tasks = Task.where(:user_id == session[:user_id])
+    @tasks = Task.where("user_id = ?", session[:user_id])
     render :json => @tasks
   end
   
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    @tasks = Task.where(:user_id == session[:user_id])
+    @tasks = Task.where("user_id = ?", session[:user_id])
     render :json => @tasks
   end
 
