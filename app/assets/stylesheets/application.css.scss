@@ -62,14 +62,6 @@ input[type=checkbox]
   background-color: #ad1d28;
 }
 
-.btn{
-  position: relative;
-  
-}
-
-// .badge-inverse:hover {
-//   background-color: #ad1d28;
-// }
 
 #taskDivInProgress {
   float:left;
@@ -77,7 +69,10 @@ input[type=checkbox]
 
 #taskDivComplete {
   float:right;
-  padding-left: 1000 px;
+}
+
+.btn-default{
   position: relative;
 }
+
 

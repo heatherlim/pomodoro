@@ -18,19 +18,20 @@
             <input type = "checkbox" ng-click="updateTask()">
             <br>
             Pomodoro Number: {{task.tomatonum}}
+            <a href="#"  ng-click="deleteTask()" ng-show="hover == true && selectedTask == this"> delete</a>
           </span>
-          <a href="#" class="btn btn-default" ng-click="deleteTask()" ng-show="hover == true && selectedTask == this"> X</a>
         </p>
         </li>
-        <input type ="text" ng-model="newTask" placeholder="New Task"> <a href="#" class="btn btn-default" ng-click="addTask()"> Add</a>
-
+        <br>
+        <form ng-submit="addTask()">
+          <input type ="text" ng-model="newTask" placeholder="New Task (hit 'enter' to submit)" style="width: 200px;">
+        </form> 
+      
       </div>
 
-      <div style = "position:fixed; top: 30%; left: 50%; margin-top:-50px; margin-left:-100px;" ng-show="myValue == true">
+      <div style = "position:fixed; top: 30%; left: 55%; margin-top:-50px; margin-left:-100px;" ng-show="myValue == true">
         <br><br><br><br><br><br><br><br>
-
           <h1> {{counter}}</h1>
-
         <button ng-click="countdown()">Start</button><button ng-click="stop()">Stop/Reset</button>
       </div>
 
@@ -48,8 +49,10 @@
               <input type = "checkbox" ng-click="updateTask()">
               <br>
               Pomodoro Number: {{task.tomatonum}}
+                <a href="#"  ng-click="deleteTask()" ng-show="hover == true && selectedTask == this"> delete</a>
             </span>
-            <a href="#" class="btn btn-default" ng-click="deleteTask()" ng-show="hover == true && selectedTask == this"> X</a>
+            
+            
           </p>
         </li>
 

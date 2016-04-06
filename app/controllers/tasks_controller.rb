@@ -3,15 +3,30 @@ class TasksController < ApplicationController
 
   def welcome
     render 'index'
-    binding.pry
+    unless session[:user_id]
+      session[:user_id] = SecureRandom.uuid
+    end
   end
 
   def new
     @task = Task.new
   end
+  
+  def create
+    @task = Task.new
+    @task.description = params[:newTask]
+    @task.status = "in_progress"
+    @task.tomatonum = 0
+    @task.user_id = session[:user_id]
+    if @task.save
+      render :json => @task
+    else
+      flash[:notice] = "Task needs a name!"
+    end
+  end
 
   def index
-    @tasks = Task.all
+    @tasks = Task.where(:user_id == session[:user_id])
     render :json => @tasks
   end
 
@@ -46,16 +61,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
-  def create
-    @task = Task.new
-    @task.description = params[:newTask]
-    @task.status = "in_progress"
-    @task.tomatonum = 0
-    if @task.save
-      render :json => @task
-    else
-      flash[:notice] = "Task needs a name!"
-    end
-  end
+  
 
 end

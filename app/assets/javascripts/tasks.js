@@ -61,16 +61,14 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
    }
    
    $scope.hideButton = function(){
-      $timeout(function(){
-        $scope.hover = false;
-      }, 3000);
+     $scope.hover = false;
    }
    
    $scope.deleteTask = function(){
 
      $http.delete('/tasks/' + this.task.id)
         .success(function(result){
-          // $scope.myValue = false;
+          $scope.myValue = false;
           $scope.tasks = result;
         })
         .error(function(data, status){
