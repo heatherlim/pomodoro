@@ -2,14 +2,14 @@
 <h1>Pomodoro</h1>
 </center>
 
-  <div ng-controller="TaskCtrl" style="padding-right:180px; padding-left:180px">
+  <div ng-controller="TaskCtrl" style="padding-right:50px; padding-left:50px;">
 
       <div id = "taskDivInProgress">
 
         <h2>In Progress</h2>
         <br>
         <li style = "list-style: none;" ng-repeat="task in tasks | filter: {status: 'in_progress'} | orderBy:'created_at'">
-          <!--  filter-->
+    
           <p>
           <span class="badge badge-inverse" ng-class="{'badge badge-select': select == this, 'badge badge-inverse': select != this}" ng-click="selectTask()" ng-mouseover = "showButton()" ng-mouseout = "hideButton()">
             <label ng-model="task">
@@ -23,16 +23,16 @@
         </p>
         </li>
         <br>
-        <form ng-submit="addTask()">
+        <form ng-submit="addTask()" style="padding-bottom: 60px;">
           <input type ="text" ng-model="newTask" placeholder="New Task (hit 'enter' to submit)" style="width: 200px;">
         </form> 
       
       </div>
 
-      <div style = "position:fixed; top: 30%; left: 55%; margin-top:-50px; margin-left:-100px;" ng-show="myValue == true">
+      <div style = "position:fixed; top: 20%; left: 55%; margin-top:-50px; margin-left:-100px;" ng-show="myValue == true">
         <br><br><br><br><br><br><br><br>
-          <h1> {{counter}}</h1>
-        <button ng-click="countdown()">Start</button><button ng-click="stop()">Stop/Reset</button>
+          <h1 style = "padding-left:30px;"> {{counter}}</h1>
+        <button ng-click="countdown()"><font color = "black">Start</button> <button ng-click="stop()">{{stopReset}}</font></button>
       </div>
 
 

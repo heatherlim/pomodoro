@@ -23,23 +23,23 @@
  @import "bootstrap";
 
  // Bootstrap body padding for fixed navbar
- body { padding-top: 60px; }
+ body { padding-top: 0px; }
 
  // And finally bootswatch style itself
  @import "bootswatch/amelia/bootswatch";
 
 h1 {
-    font-size: 650%;
+    font-size: 550%;
     color: #ad1d28;
 }
 
 h2 {
-   font-size: 400%;
+   font-size: 300%;
    color: #27666d;
 }
 
 label {
-    font-size: 250%;
+    font-size: 150%;
     margin: 5px 0px;
     text-indent: 10px;
 }
@@ -53,12 +53,12 @@ input[type=checkbox]
   -o-transform: scale(1.5); /* Opera */
 }
 .badge-inverse {
-  width: 500px !important;
+  width: 300px !important;
   background-color: #27666d;
 }
 
 .badge-select{
-  width: 500px !important;
+  width: 300px !important;
   background-color: #ad1d28;
 }
 
@@ -73,6 +73,6 @@ input[type=checkbox]
 
 .btn-default{
   position: relative;
-}
+} 
 
 

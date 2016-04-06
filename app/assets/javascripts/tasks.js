@@ -13,7 +13,7 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
    $scope.tasks = Task.query();
    $scope.counter = 5;
    $scope.hover = false;
-
+   $scope.stopReset = "Stop";
    $scope.countdown = function(){
      if($scope.counter !== 0){
      $scope.counter--;
@@ -38,6 +38,7 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
    }
 
    $scope.selectTask = function(){
+     $scope.counter = 5;
      $scope.select = this;
      $scope.myValue = true;
    }
