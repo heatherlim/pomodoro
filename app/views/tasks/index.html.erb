@@ -1,5 +1,6 @@
 <center>
 <h1>Pomodoro</h1>
+<a target="_blank" href = "http://lifehacker.com/productivity-101-a-primer-to-the-pomodoro-technique-1598992730">What is the pomodoro technique?</a>
 </center>
 
   <div ng-controller="TaskCtrl" style="padding-right:50px; padding-left:50px;">
@@ -42,7 +43,7 @@
         <br>
         <li style = "list-style: none;" ng-repeat="task in tasks | filter: {status: 'complete'}">
           <p>
-            <span class="badge badge-inverse" ng-mouseover = "showButton()" ng-mouseout = "hideButton()">
+            <span class="badge badge-inverse-complete" ng-mouseover = "showButton()" ng-mouseout = "hideButton()">
               <label ng-model="task">
                 {{task.description}}
               </label>
