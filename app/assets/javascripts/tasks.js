@@ -33,18 +33,24 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
 
    $scope.stop = function(){
      if($scope.counter !== 0){
-     $timeout.cancel(mytimeout);
-     $scope.counterOn = false;
-    
+       $timeout.cancel(mytimeout);
+       $scope.counterOn = false;
      }else{
-     $scope.counter = 1500;
+       $scope.counter = 1500;
      }
    }
 
    $scope.selectTask = function(){
-         $scope.counter;
-         $scope.select = this;
-         $scope.myValue = true;
+      if($scope.counter != 1500){
+        $scope.stop();
+        $scope.counter = 1500;
+        $scope.select = this;
+        $scope.myValue = true;
+      } else {
+        $scope.counter = 1500;
+        $scope.select = this;
+        $scope.myValue = true;
+      }
    }
    
    
