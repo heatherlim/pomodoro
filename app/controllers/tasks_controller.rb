@@ -26,6 +26,7 @@ class TasksController < ApplicationController
   end
 
   def index
+    # current_user.tasks
     @tasks = Task.where("user_id = ?", session[:user_id])
     # Task.where(:user_id == session[:user_id])
     render :json => @tasks

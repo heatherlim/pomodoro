@@ -13,10 +13,10 @@
     
           <p>
           <span class="badge badge-inverse" ng-class="{'badge badge-select': select == this, 'badge badge-inverse': select != this}" ng-click="selectTask()" ng-mouseover = "showButton()" ng-mouseout = "hideButton()">
-            <label ng-model="task">
+            <label ng-model="task" >
               {{task.description}}
             </label>
-            <input type = "checkbox" ng-click="updateTask()">
+            <input type = "checkbox" ng-click="updateTask(); $event.stopPropagation();">
             <br>
             Pomodoro Number: {{task.tomatonum}}
             <a href="#"  ng-click="deleteTask()" ng-show="hover == true && selectedTask == this"> delete</a>
@@ -30,12 +30,14 @@
       
       </div>
 
-      <div style = "position:fixed; top: 20%; left: 55%; margin-top:-50px; margin-left:-100px;" ng-show="myValue == true">
+      <div style = "position:fixed; top: 20%; left: 55%; margin-top:-50px; margin-left:-130px;" ng-show="myValue == true">
         <br><br><br><br><br><br><br><br>
-          <h1 style = "padding-left:30px;"> {{counter}}</h1>
-        <button ng-click="countdown()"><font color = "black">Start</button> <button ng-click="stop()">{{stopReset}}</font></button>
+        
+          <h1> {{counter | secondsToDateTime | date:'mm:ss'}} </h1>
+        <div  style = "padding-left: 40px;">
+          <button ng-click="countdown()" ng-disabled="counterOn"><font color = "black">Start</button> <button ng-click="stop()">{{stopReset}}</font></button>
+        </div>
       </div>
-
 
       <div id = "taskDivComplete">
 

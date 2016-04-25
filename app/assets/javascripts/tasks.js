@@ -11,20 +11,22 @@ app = angular.module('TasksList', ["ngResource"])
 
 app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($scope, Task, $http, $timeout) {
    $scope.tasks = Task.query();
-   $scope.counter = 5;
+   $scope.counter = 1500;
+   $scope.counter_to_minutes = 10;
    $scope.hover = false;
    $scope.stopReset = "Stop";
+   
    $scope.countdown = function(){
+     $scope.counterOn = true;
      if($scope.counter !== 0){
-     $scope.counter--;
+       $scope.counter--;
     mytimeout = $timeout($scope.countdown,1000);
-
 
      if($scope.counter === 0){
        $timeout.cancel(mytimeout);
        $scope.updatePomodoro();
      }
-   }
+     }
    }
 
   // var mytimeout = $timeout($scope.countdown,1000);
@@ -32,15 +34,17 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
    $scope.stop = function(){
      if($scope.counter !== 0){
      $timeout.cancel(mytimeout);
+     $scope.counterOn = false;
+    
      }else{
-     $scope.counter = 5;
+     $scope.counter = 1500;
      }
    }
 
    $scope.selectTask = function(){
-     $scope.counter = 5;
-     $scope.select = this;
-     $scope.myValue = true;
+         $scope.counter;
+         $scope.select = this;
+         $scope.myValue = true;
    }
    
    
@@ -64,6 +68,7 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
    $scope.hideButton = function(){
      $scope.hover = false;
    }
+   
    
    $scope.deleteTask = function(){
 
@@ -115,3 +120,10 @@ app.factory("Task", [
     });
   }
 ]);
+
+app.filter('secondsToDateTime', [function() {
+    return function(seconds) {
+      return new Date(1970, 0, 1).setSeconds(seconds);
+    };
+    
+}])
