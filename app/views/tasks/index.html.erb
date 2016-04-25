@@ -19,7 +19,7 @@
             <input type = "checkbox" ng-click="updateTask(); $event.stopPropagation();">
             <br>
             Pomodoro Number: {{task.tomatonum}}
-            <a href="#"  ng-click="deleteTask()" ng-show="hover == true && selectedTask == this"> delete</a>
+            <a href="#"  ng-click="deleteTask(); $event.stopPropagation();" ng-show="hover == true && selectedTask == this"> delete</a>
           </span>
         </p>
         </li>
