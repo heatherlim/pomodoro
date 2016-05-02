@@ -29,14 +29,14 @@
         </form> 
       
       </div>
-
-      <div style = "position:fixed; top: 40%; left: 43%; margin-top:-50px;" ng-show="myValue == true">
+<center>
+      <div style = "position: absolute;top:50%;left:50%;margin-top: -100px;margin-left:-100px;" ng-show="myValue == true">
           <h1> {{counter | secondsToDateTime | date:'mm:ss'}} </h1>
-        <div  style = "padding-left: 40px;">
+        <div>
           <button ng-click="countdown()" ng-disabled="counterOn"><font color = "black">Start</button> <button ng-click="stop()">{{stopReset}}</font></button>
         </div>
       </div>
-
+</center>
       <div id = "taskDivComplete">
 
         <h2>Complete</h2>
