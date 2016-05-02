@@ -11,7 +11,7 @@ app = angular.module('TasksList', ["ngResource"])
 
 app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($scope, Task, $http, $timeout) {
    $scope.tasks = Task.query();
-   $scope.counter = 5;
+   $scope.counter = 1500;
    $scope.counter_to_minutes = 10;
    $scope.hover = false;
    $scope.stopReset = "Stop";
@@ -37,19 +37,19 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
        $timeout.cancel(mytimeout);
        $scope.counterOn = false;
      }else{
-       $scope.counter = 5;
+       $scope.counter = 1500;
      }
    }
 
    $scope.selectTask = function(){
-      if($scope.counter != 5){
+      if($scope.counter != 1500){
         $scope.counterOn = false;
         $scope.stop();
-        $scope.counter = 5;
+        $scope.counter = 1500;
         $scope.select = this;
         $scope.myValue = true;
       } else {
-        $scope.counter = 5;
+        $scope.counter = 1500;
         $scope.select = this;
         $scope.myValue = true;
       }
