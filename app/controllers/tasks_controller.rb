@@ -13,8 +13,9 @@ class TasksController < ApplicationController
   end
   
   def create
+  #  binding.pry
     @task = Task.new
-    @task.description = params[:newTask]
+    @task.description = params[:data]
     @task.status = "in_progress"
     @task.tomatonum = 0
     @task.user_id = session[:user_id]

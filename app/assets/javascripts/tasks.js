@@ -1,17 +1,12 @@
- // angular.module('TasksList', []).controller "TaskCtrl", ($scope) ->
- //   $scope.tasks = [
- //     {description: "Hi"}
- //     {description: "Hello"}
- //     {description: "Hallo"}
- //   ]
-
 var app;
 
 app = angular.module('TasksList', ["ngResource"])
 
+//const COUNTER = 1500;
+
 app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($scope, Task, $http, $timeout) {
    $scope.tasks = Task.query();
-   $scope.counter = 1500;
+   $scope.counter = 1500; // Magic number, what does counter mean?
    $scope.counter_to_minutes = 10;
    $scope.hover = false;
    $scope.stopReset = "Stop";
@@ -29,8 +24,6 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
      }
      }
    }
-
-  // var mytimeout = $timeout($scope.countdown,1000);
 
    $scope.stop = function(){
      if($scope.counter !== 0){
@@ -103,14 +96,20 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
    };
 
    $scope.addTask = function(){
-     $http.post('/tasks', {newTask: $scope.newTask})
-        .success(function(result){
-          $scope.tasks.push(result);
-          $scope.newTask = '';
-        })
-        .error(function(data, status){
-          console.log(data);
-        });
+     $scope.task = new Task();
+     $scope.task.data = $scope.newTask;
+     Task.save($scope.task, function(result){
+       $scope.tasks.push(result);
+       $scope.newTask = '';
+     }); 
+    //  $http.post('/tasks', {newTask: $scope.newTask})
+    //     .success(function(result){
+    //       $scope.tasks.push(result);
+    //       $scope.newTask = '';
+    //     })
+    //     .error(function(data, status){
+    //       console.log(data);
+    //     });
    };
    
    $scope.beep = function() {
@@ -121,18 +120,19 @@ app.controller("TaskCtrl", ['$scope', 'Task', '$http', '$timeout',  function($sc
 
 }]);
 
-app.factory("Task", [
-  "$resource", function($resource) {
-    return $resource("/tasks", {
-        // return $resource("/tasks/:id", {
-      // id: "@id"
-    }, {
-      update: {
-        method: "GET"
-      }
-    });
-  }
-]);
+// app.factory("Task", ["$resource", function($resource) {
+//       return $resource("/tasks", {
+//       }, {
+//         update: {
+//           method: "GET"
+//         }
+//       });
+//     }
+// ]);
+
+app.factory('Task', function($resource) {
+  return $resource('/tasks');
+});
 
 app.filter('secondsToDateTime', [function() {
     return function(seconds) {
